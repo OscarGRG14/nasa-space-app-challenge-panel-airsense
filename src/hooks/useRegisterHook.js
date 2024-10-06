@@ -12,7 +12,7 @@ export default function useRegisterHook() {
         setSuccess(false);
 
         try {
-            await axios.post("http://localhost:5000/api/user/register", {
+            await axios.post("/api/user/register", {
                 nombre,
                 apellido,
                 email,

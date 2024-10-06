@@ -23,7 +23,7 @@ export default function useGetUserInfo() {
 
                 // Hacer la solicitud a la API usando Axios
                 const response = await axios.get(
-                    `http://localhost:5000/api/user/get/${userId}`,{
+                    `/api/user/get/${userId}`,{
                         headers: {
                             'Content-Type': 'application/json',
                             Authorization: `Bearer ${token}`, // Enviar el token si es necesario
