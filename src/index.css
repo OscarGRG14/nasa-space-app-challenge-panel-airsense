@@ -5,3 +5,16 @@
 .fondo{
     background-image: url('../src/assets/fondo.jpg');
 }
+
+.hide-scrollbar {
+    overflow-y: scroll; 
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

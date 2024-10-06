@@ -1,10 +1,11 @@
 import React from "react";
-import LoginForm from "../components/Forms/LoginForm";
+import RegisterForm from "../components/Forms/RegisterForm";
 import ParticleBackground from "../components/Particle/ParticleBackground";
 
-export default function Login() {
+export default function Register() {
     return (
         <div className="relative h-screen overflow-hidden">
+
             {/* Fondo de imagen */}
             <div
                 className="absolute inset-0 bg-cover bg-center fondo"
@@ -20,7 +21,7 @@ export default function Login() {
 
             {/* Contenedor centrado */}
             <div className="relative z-10 flex justify-center items-center h-full">
-                <LoginForm />
+                <RegisterForm />
             </div>
 
         </div>

@@ -1,17 +1,33 @@
-import React, { useState } from "react";
-import { Button, Checkbox, Label, TextInput, Card } from "flowbite-react";
+import React, { useState, useEffect } from "react";
+import { Button, Label, TextInput, Card } from "flowbite-react";
+import useLoginHook from "../../hooks/useLoginHook"; // Asegúrate de que la ruta sea correcta
+import { useNavigate } from "react-router-dom"; // Importar useNavigate
 
-export default function LoginForm({ onSubmit }) {
+export default function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { loginUser, loading, error, success } = useLoginHook(); // Usar el hook
+    const navigate = useNavigate(); // Inicializar useNavigate
+    const [formSubmitted, setFormSubmitted] = useState(false); // Estado para controlar el envío del formulario
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onSubmit({ email, password });
-        // Puedes limpiar el formulario si lo deseas
-        setEmail("");
-        setPassword("");
+        setFormSubmitted(true); // Marcar que se ha enviado el formulario
+
+        // Llamar a loginUser y esperar a que se complete
+        await loginUser(email, password);
     };
+
+    useEffect(() => {
+        // Verificar si el inicio de sesión fue exitoso y redirigir
+        if (formSubmitted && success) {
+            navigate("/home"); // Redirigir a la página de panel
+            // Reiniciar el estado del formulario
+            setEmail("");
+            setPassword("");
+            setFormSubmitted(false);
+        }
+    }, [formSubmitted, success, navigate]);
 
     return (
         <div className="flex justify-center items-center h-screen">
@@ -44,8 +60,11 @@ export default function LoginForm({ onSubmit }) {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <Button type="submit">Iniciar Sesion</Button>
+                    <Button type="submit" disabled={loading}>
+                        {loading ? "Cargando..." : "Iniciar Sesion"}
+                    </Button>
                 </form>
+                {error && <p className="text-red-500 text-center">{error}</p>} {/* Mostrar error si existe */}
             </Card>
         </div>
     );
