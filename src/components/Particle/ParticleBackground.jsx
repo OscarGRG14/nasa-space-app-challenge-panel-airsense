@@ -31,10 +31,10 @@ export default function ParticleBackground() {
                 },
                 modes: {
                     push: {
-                        quantity: 4, // Cantidad de partículas al hacer clic
+                        quantity: 3, // Cantidad de partículas al hacer clic
                     },
                     repulse: {
-                        distance: 200, // Distancia de repulsión
+                        distance: 50, // Distancia de repulsión
                         duration: 0.4,  // Duración del efecto de repulsión
                     },
                 },

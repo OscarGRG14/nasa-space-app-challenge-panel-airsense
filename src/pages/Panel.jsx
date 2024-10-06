@@ -1,16 +1,18 @@
 import React from "react";
+import useGetUserInfo from "../hooks/useGetUserInfoHook";
 import DataCard from "../components/Cards/DataCard";
 import Hero from "../components/Essentials/Hero";
 import Container from "../components/Container/Container";
 import MultiDataCard from "../components/Cards/MultiDataCard";
 
 export default function Panel() {
+    const { userInfo, loading, error } = useGetUserInfo();
     const humidity = 60;
     const airQuality = "Buena";
     const co2 = 400;
 
     const data = {
-        nombre: "Juan",
+        nombre: userInfo ? `${userInfo.nombre}` : "Usuario",
         location: {
             department: "Cundinamarca",
             city: "Bogotá",
@@ -41,6 +43,8 @@ export default function Panel() {
         },
     ];
 
+    if (loading) return <p>Cargando...</p>;
+    if (error) return <p>Error: {error}</p>;
 
     return (
         <>
