@@ -12,7 +12,7 @@ export const useAirQualityData = (lat, lon) => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`
+                    `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`
                 );
 
                 const airData = response.data.list[0];
